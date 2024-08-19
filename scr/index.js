@@ -1,6 +1,5 @@
 function submitYourCity(event){
-    event.preventDeFlault();
-   console.log(searchInput.value);
+    event.preventDefault();
    let searchInput=document.querySelector("#input-search-form");
    let cityElement=document.querySelector("#city");
    cityElement.innerHTML=searchInput.value;
