@@ -64,10 +64,12 @@ body{
       color:#202A1E;
      }
      .emoji{
-      font-size: 25px;
+      width: 40px;
+      height: 40px;
       margin-top:40px;
       margin-left: -30px;
       margin-right: -10px;
+      
      }
      .celcuis{
       font-size: 25px;
