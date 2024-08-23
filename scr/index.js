@@ -52,6 +52,14 @@ function refreshWeather(response) {
     searchCity(searchInput.value);
   }
 
+  function forematDay(timestamp){
+let date= new Date(timestamp*1000);
+let days = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+
+return days[Date.getDay()];
+
+  }
+
   let searchFormElement = document.querySelector("#search-form");
   searchFormElement.addEventListener("submit", submitYourCity);
 
@@ -66,24 +74,28 @@ function displayForecast(response){
 }
 
   function displayForecast(){
-let days = ["Mon","Tue","Wed","Thu"," Fri","Sat","Sun",];
+
 let forecastHtml="";
 
-    days.forEach(function (day){
+    response.data.daily.forEach(function (day,index) {
+      if(index < 5)
       forecastHtml =
       forecastHtml +
     `
     <div class="weather-forecast-day">
-            <div class="weather-forecast-date">${day}</div>
-            <div class="weather-forecast-icon">☀️</div>
+            <div class="weather-forecast-date">${formatDate(day.time)}</div>
+           
+            <img scr="${day.condition.icon_url}"class="weather-forecast-icon"/>
+          
             <div class="weather-forecast-temperatures">
             <div class="weather-forecast-temperature">
-               <strong>19°</strong>
+               <strong>${Math.round(day.temperature.maximum)}°</strong>
                </div>
-            <div class="weather-forecast-temperature"> 16°</div>
+            <div class="weather-forecast-temperature"> ${Math.round(day.temperature.minimum)}°</div>
             </div>
             </div>
             `;  
+
   });
 
   let forecastElement=document.querySelector("#forecast");
